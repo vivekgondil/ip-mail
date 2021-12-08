@@ -32,7 +32,7 @@ async function sendMail({ to, text, subject, html }) {
       previousIp = ip;
       sendMail({
         to: `gondilvivek@gmail.com`,
-        subject: `IP Change notification Test`,
+        subject: `IP Change notification`,
         text: `Your IP is changed to ${ip}`,
       }).catch(console.error);
     }
