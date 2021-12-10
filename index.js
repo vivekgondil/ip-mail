@@ -37,6 +37,8 @@ async function sendMail({ to, text, subject, html }) {
           text: `Your IP is changed to ${ip}`,
         }).catch(console.error);
       }
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+    }
   }, 60000);
 })();
