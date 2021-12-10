@@ -26,15 +26,17 @@ async function sendMail({ to, text, subject, html }) {
 (async () => {
   let previousIp;
   setInterval(async () => {
-    const ip = await getIpAddress();
-    if (previousIp !== ip) {
-      console.log(`IP changed form ${previousIp} => ${ip}`);
-      previousIp = ip;
-      sendMail({
-        to: `gondilvivek@gmail.com`,
-        subject: `IP Change notification`,
-        text: `Your IP is changed to ${ip}`,
-      }).catch(console.error);
-    }
+    try {
+      const ip = await getIpAddress();
+      if (previousIp !== ip) {
+        console.log(`IP changed form ${previousIp} => ${ip}`);
+        previousIp = ip;
+        sendMail({
+          to: `gondilvivek@gmail.com`,
+          subject: `IP Change notification`,
+          text: `Your IP is changed to ${ip}`,
+        }).catch(console.error);
+      }
+    } catch (error) {}
   }, 60000);
 })();
