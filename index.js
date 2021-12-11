@@ -24,21 +24,19 @@ async function sendMail({ to, text, subject, html }) {
 }
 
 (async () => {
-  let previousIp;
+  // let previousIp;
   setInterval(async () => {
     try {
       const ip = await getIpAddress();
-      if (previousIp !== ip) {
-        console.log(`IP changed form ${previousIp} => ${ip}`);
-        previousIp = ip;
-        sendMail({
-          to: `gondilvivek@gmail.com`,
-          subject: `IP Change notification`,
-          text: `Your IP is changed to ${ip}`,
-        }).catch(console.error);
-      }
+      // console.log(`IP changed form ${previousIp} => ${ip}`);
+      // previousIp = ip;
+      await sendMail({
+        to: `gondilvivek@gmail.com`,
+        subject: `Mail from dev branch`,
+        text: `Your IP is  ${ip}`,
+      }).catch(console.error);
     } catch (error) {
       console.log(error);
     }
-  }, 60000);
+  }, 5000);
 })();
